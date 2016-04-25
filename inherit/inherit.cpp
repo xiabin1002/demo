@@ -18,6 +18,7 @@ public:
 	C(const char *psz =NULL):m_pSz(strcpy(new char[strlen(psz? psz:NULL)+1], psz?psz:NULL)){}
 	C(int I=0):i(I){}
 	virtual ~C(){cout<< "destory C" <<endl;}
+	
 
 
 	void display1(){cout<<"c1"<<endl;}
@@ -25,6 +26,7 @@ public:
 	virtual int sum() const{return i;}
 	
 };
+
 
 class D : public C{
 
@@ -84,25 +86,6 @@ void CombinationTest(Outer::Inner1 obj)
 
 }*/
 
-const char*CreateFileName(const char* lpszFormat, DWORD* date)
-{
-	if (NULL == lpszFormat)
-		return NULL;
-	
-	char buf[1024] = {0};
-/*	va_list	argList;
-	va_start(argList, lpszFormat);
-	int iRet = _vsnprintf(buf, sizeof(buf)-1,lpszFormat, argList);
-    assert(iRet>=0);
-    if( iRet>= 0 ) {
-        buf[iRet] = '\0';
-    }
-	va_end(argList);*/
-	sprintf(buf, lpszFormat, date[0], date[1], date[2], date[3], date[4], date[5], date[6], date[7]);
-	
-	
-	return buf;
-}
 
 char* str_replace(char *in, char *out, int outlen, const char *src, char *dst)
 {
@@ -145,60 +128,6 @@ char* str_replace(char *in, char *out, int outlen, const char *src, char *dst)
     return out;
 }
 
-void  setValue(string& ttt)
-{
-	ttt = "12";
-}
-void getString()
-{
-	string dd;
-	setValue(dd);
-
-	SYSTEMTIME m_sysTime;
-	GetLocalTime(&m_sysTime);
-	WORD *date[8] = {0};
-	int index = 0;
-
-	string strFSNName = "YYYY-MM-dd-HH-mm-ss-SSS.FSN";//
-	string sdsd = "";
-	if (sdsd.empty())
-	{
-		sdsd = strFSNName;
-	}
-	
-	char dest[256] = {0};
-	int len = 0;
-
-	string strTemp;
-	int iPos = -1;
-	if ((iPos=strFSNName.find("YYYY") )!= -1)
-	{
-		date[len] = &m_sysTime.wHour;
-		strTemp = strFSNName.substr(0,iPos);
-		strTemp +="%04d";
-		strTemp += strFSNName.substr(iPos+4,strFSNName.length()-iPos-4);
-		strFSNName = strTemp;
-	}
-
-	if ((iPos=strFSNName.find("dd") )!= -1)
-	{
-		strTemp = strFSNName.substr(0,iPos);
-		strTemp +="%02d";
-		strTemp += strFSNName.substr(iPos+2,strFSNName.length()-iPos-2);
-		strFSNName = strTemp;
-	}
-	if ((iPos=strFSNName.find("HH") )!= -1)
-	{
-		strTemp = strFSNName.substr(0,iPos);
-		strTemp +="%02d";
-		strTemp += strFSNName.substr(iPos+2,strFSNName.length()-iPos-2);
-		strFSNName = strTemp;
-	}
-
-	printf("%d", *date[0]);//,*date[1],*date[2],*date[3],*date[4],*date[5]
-
-}
-
 int main(int argc, char* argv[])
 {
 	C *c = new C("qwe");
@@ -206,7 +135,6 @@ int main(int argc, char* argv[])
 	D *d = new D(10, 20);
 	//Call(*c);
 	Call(*d);
-	getString();
 	C *pd = new D(100,200);
 	pd->display1();
 	pd->display2();
