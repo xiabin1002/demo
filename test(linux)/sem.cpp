@@ -43,11 +43,11 @@ int main(int argc, char *argv[])
     int status = 0;
     int value = 0;
 
-    sem = sem_open(SEM_FILENAME, O_CREAT | O_RDWR | O_EXCL, 00777, 1);
+    sem = sem_open(SEM_FILENAME, O_CREAT | O_RDWR | O_EXCL, 0666, 1);
     if(sem == SEM_FAILED )
     {
         if(errno == EEXIST){
-            sem = sem_open(SEM_FILENAME, O_RDWR, 00777, 1);
+            sem = sem_open(SEM_FILENAME, O_RDWR, 0666, 1);
         }
         else{
             cout<<"unable to create semaphore"<<endl;

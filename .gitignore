@@ -1,3 +1,4 @@
 inherit/inherit.ncb
 *.opt
 inherit/inherit.plg
+*.bak
