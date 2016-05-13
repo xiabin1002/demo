@@ -21,9 +21,16 @@ public:
 	
 
 
+	//void printStaticValue(){cout<<"static value: "<<iInherit<<endl;}
 	void display1(){cout<<"c1"<<endl;}
 	virtual	void display2(){cout<<"c2"<<endl;}
 	virtual int sum() const{return i;}
+
+
+	
+public:
+
+	static int iInherit(int inner = -1);
 	
 };
 
@@ -138,6 +145,7 @@ int main(int argc, char* argv[])
 	C *pd = new D(100,200);
 	pd->display1();
 	pd->display2();
+	
 	Call(*pd);
 	delete pd;pd=NULL;
 	delete c;pd=NULL;
