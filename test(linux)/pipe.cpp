@@ -1,3 +1,6 @@
+/**
+无名管道只能在具有共同祖先的进程间使用，
+*/
 #include <iostream>
 #include <unistd.h>
 
@@ -10,7 +13,7 @@ int main(int argc, char* argv[])
 	int fd[2];
     char line[MAX_LINE] = {0};
 	pid_t pid;
-	
+	/*pipe： 创建全双工管道IO句柄 fd[0]（读句柄） fd[1]（写句柄）*/
     if(pipe(fd) == 0){
 
 

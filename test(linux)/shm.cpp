@@ -20,11 +20,11 @@ int main(int argc,char **argv)
     int shmid = 0;
     void *shmptr = NULL ;
     key_t   shmkey;
-
+		/*ftok: 获取IPC通讯 （消息队列、信号量和共享内存） 时指定一个ID值，主要在不同进程间共享内存时使用*/
    if((shmkey = ftok("/dev/null", 1)) == (key_t)-1){
        perror("create ftok error");exit(1);
    }
-
+		/*shmget: 获取一个共享存储的标示符*/
     shmid = shmget(shmkey, MEMORY_SIZE, 0600|IPC_CREAT|IPC_EXCL);
     if(shmid == -1){
         //perror("create share memory error");
